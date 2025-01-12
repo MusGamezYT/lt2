@@ -34,7 +34,7 @@ do
                             local player = game.Players.LocalPlayer
                             local character = player.Character or player.CharacterAdded:Wait()
                             local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-                            local wood = CFrame.new(382.9980163574219, 3.101609945297241, -250.00381469726562)
+                            local wood = CFrame.new(382.9980163574219, 3.101609945297241, -250.00381469726562, 0, -90, 0)
                             humanoidRootPart.CFrame = wood
                         end
                     },
