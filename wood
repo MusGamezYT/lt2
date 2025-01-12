@@ -1,0 +1,51 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "Wood Organizer",
+    SubTitle = "by muz011",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+})
+
+--Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main", Icon = "align-justify" }),
+}
+
+local Options = Fluent.Options
+
+do
+    Tabs.Main:AddButton({
+        Title = "TP To Wood Position",
+        Description = "Don't forget to turn on Noclip!",
+        Callback = function()
+            Window:Dialog({
+                Title = "Confirm",
+                Content = "TP To Wood Position? (Make sure to turn on noclip)",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            local player = game.Players.LocalPlayer
+                            local character = player.Character or player.CharacterAdded:Wait()
+                            local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+                            local wood = CFrame.new(382.998016, 3.10160995, -250.003815, 0, 0, -1, 0, 1, 0, 1, 0, 00, -90, 0)
+                            humanoidRootPart.CFrame = wood
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+end
